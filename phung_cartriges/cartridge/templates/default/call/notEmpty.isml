@@ -1,0 +1,2 @@
+<!--- TEMPLATENAME: notEmpty.isml --->
+<h1>The param is not empty</h1> ${pdict.CurrentHttpParameterMap.param.value}
