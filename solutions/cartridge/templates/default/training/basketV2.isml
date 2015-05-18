@@ -1,0 +1,14 @@
+<!--- TEMPLATENAME: basket.isml --->
+<isif condition = "${pdict.Basket.productQuantityTotal == 0}">
+The Basket is empty
+<iselse>
+Basket product names are: <br/>
+<isloop items="${pdict.Basket.getProductLineItems() }" var="productLineItem" status="loopstate" >
+	The first time thru: ${loopstate.first}<br>
+	The current count is: ${loopstate.count}</br>
+	The current index is: ${loopstate.index}</br>
+	The last time thru: ${loopstate.last}</br>
+	
+${productLineItem.product.name}<br/>
+</isloop>
+</isif>

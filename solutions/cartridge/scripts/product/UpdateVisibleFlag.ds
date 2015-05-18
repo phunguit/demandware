@@ -1,0 +1,55 @@
+/**
+* Demandware Script File
+* Reads XML file and gets product, checks for storefrontvisible flag. 
+* If this flag is not null or empty or "none", then it overrides the Online and Searchable flags for the product.
+*
+* @input filename	: String
+* 
+*/
+importPackage(dw.io);
+importPackage(dw.catalog);
+importPackage(dw.system);
+importPackage(dw.value);
+importPackage(dw.util);
+
+
+function execute( pdict : PipelineDictionary ) : Number {
+	var xmlReader : XMLStreamReader;
+	var xmlObject : XML;
+	var event : Number;     
+	try{
+		var file = new File(File.IMPEX + File.SEPARATOR + "src" + File.SEPARATOR + pdict.filename);
+		var fileReader : FileReader = new FileReader(file);
+		xmlReader = new XMLStreamReader(fileReader);
+	
+		while(xmlReader.hasNext()){
+			event = xmlReader.next();
+
+		    if(event == XMLStreamConstants.START_ELEMENT && xmlReader.localName == "product") {
+				xmlObject = xmlReader.getXMLObject();
+				var id : String = xmlObject.attribute("product-id");
+				var product : Product = ProductMgr.getProduct(id);
+				
+				if(product != null) {
+					var evalue : EnumValue = product.custom.storefrontvisible;
+					var value : String = evalue.getValue();
+
+					if(value != null && value != "" && !value.equals("none") ) {
+						if(value.equalsIgnoreCase("false")) {
+							product.setOnlineFlag(false);
+							product.setSearchableFlag(false);
+						}
+						if(value.equalsIgnoreCase("true")) {
+							product.setOnlineFlag(true);
+							product.setSearchableFlag(true);
+						}
+					}
+				}
+			}
+		}
+	} catch(e) {
+		Logger.error("UpdateVisibleFlag.ds error EXCEPTION " + e);
+		return PIPELET_ERROR;
+	}
+	return PIPELET_NEXT;
+}

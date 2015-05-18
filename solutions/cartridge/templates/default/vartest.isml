@@ -1,0 +1,17 @@
+<isset name="sessionVar" value="${1}" />
+sessionVar is ${session.custom.sessionVar}</br>
+
+<isset name="requestVar" value="hello" scope="request" />
+requestVar is ${request.custom.requestVar}</br>
+
+<isset name="pageVar" value="${false}" scope="page" />
+pageVar is ${pageVar}</br>
+
+<isset name="sessionVar" value="${session.custom.sessionVar + 1}" />
+sessionVar incremented:  ${session.custom.sessionVar}</br>
+
+<isset name="requestVar" value="${request.custom.requestVar + 1}" scope="request"/>
+requestVar incremented:  ${request.custom.requestVar}</br>
+
+<isset name="pageVar" value="${pageVar + 1}" scope="page" />
+pageVar incremented: ${pageVar}</br>

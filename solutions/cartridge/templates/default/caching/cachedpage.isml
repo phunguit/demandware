@@ -1,0 +1,8 @@
+<isdecorate template="product/pt_productdetails">
+	<iscache type="relative" hour="24">
+	<h1><isprint value="${new Date()}" style="DATE_TIME"></h1> 
+	
+	<!--  Remote include to show partial page caching -->
+	<h1>This section is not cached:</h1></br>
+	<isinclude url="${URLUtils.url('Product-IncludeLastVisited')}"/>
+</isdecorate>

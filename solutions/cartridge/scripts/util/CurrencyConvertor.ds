@@ -1,0 +1,45 @@
+/**
+ * Call SOAP WebService to get exchange rate between two currencies.
+ *
+ * @input  FromCurrency : String  ISO code of source currency
+ * @input  ToCurrency   : String  ISO code of target currency
+ * @output ExchangeRate : Number  exchange rate to convert from "FromCurrency" to "ToCurrency"
+ */
+importClass( dw.system.Logger );
+importPackage( dw.rpc );
+
+function execute( args : PipelineDictionary ) : Number
+{
+	// retrieve input parameters
+	var fromCurrency : String = args.FromCurrency;
+	var toCurrency : String = args.ToCurrency;
+	
+	if(empty(fromCurrency) || empty(toCurrency)){
+		return PIPELET_ERROR;
+	}
+	  
+	try
+	{
+		// get WebReference
+		var webref : WebReference = webreferences.CurrencyConvertor;		
+		// get service stub
+		//var stub : Stub = webref.defaultService;
+		var stub : Stub = webref.getService('CurrencyConvertor', 'CurrencyConvertorSoap'); 
+
+		// create ConversionRate object with the 2 currencies
+		var fc = webref.Currency.fromString(fromCurrency);
+		var tc = webref.Currency.fromString(toCurrency);
+		var cr : ConversionRate = new webref.ConversionRate(fc, tc); 
+
+		// call the web service        
+		var response : ConversionRateResponse = stub.conversionRate(cr);
+		// get result
+		args.ExchangeRate = response.getConversionRateResult();
+		return PIPELET_NEXT;
+	}
+	catch (e)
+	{
+		Logger.error("Error in GetExchangeRate.ds is: " + e);	
+		return PIPELET_ERROR;
+	}	  
+}

@@ -1,0 +1,7 @@
+<iscomment>Using a decorator</iscomment>
+<isdecorate template="product/pt_productdetails">
+	<h1>The product name is ${pdict.Product.name}</h1>
+	
+	<isset name="product" value="${pdict.myProduct}" scope="pdict"/>
+	<isinclude template="product/producttile" >
+</isdecorate>

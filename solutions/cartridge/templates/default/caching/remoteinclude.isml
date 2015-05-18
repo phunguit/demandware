@@ -1,0 +1,3 @@
+<h2>
+    Basket total: <isprint value="${pdict.Basket.adjustedMerchandizeTotalPrice}"><br/>
+</h2>

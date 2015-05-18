@@ -1,0 +1,8 @@
+<isdecorate template="account/pt_account">
+	<h2>
+	The exchange rate between 
+	<isprint value="${pdict.FromCurrency}"> and
+	<isprint value="${pdict.ToCurrency}"> 
+	is <isprint value="${pdict.Rate}" style="MONEY_LONG" />
+	</h2>
+</isdecorate>

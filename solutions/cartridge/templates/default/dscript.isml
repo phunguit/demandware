@@ -1,0 +1,6 @@
+<!--- TEMPLATENAME: dscript.isml --->
+<isscript>
+	var count = dw.customer.CustomerMgr.getRegisteredCustomerCount();
+</isscript>
+
+The total customer count is ${count}

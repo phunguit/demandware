@@ -1,0 +1,6 @@
+<iscomment>Using a local include</iscomment>
+<h1>The product name is ${pdict.Product.name}</h1>
+
+<iscomment>pdict.product variable is required in the local include</iscomment>
+<isset name="product" value="${pdict.myProduct}" scope="pdict"/>
+<isinclude template="product/producttile" >
