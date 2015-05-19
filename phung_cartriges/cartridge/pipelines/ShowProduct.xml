@@ -16,7 +16,7 @@
       </simple-transition>
       <node>
         <pipelet-node pipelet-name="GetProduct" pipelet-set-identifier="bc_api">
-          <key-binding alias="myProductsss" key="Product"/>
+          <key-binding alias="myProduct" key="Product"/>
           <key-binding alias="CurrentHttpParameterMap.pid.stringValue" key="ProductID"/>
         </pipelet-node>
         <node-display x="0" y="2"/>

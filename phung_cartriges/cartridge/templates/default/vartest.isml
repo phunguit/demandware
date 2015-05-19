@@ -1,0 +1,6 @@
+<!--- TEMPLATENAME: vartest.isml --->
+<html>
+	<head>Hello</head>
+	<h1>
+	<isinclude template="account/newslettersignup" />
+</html>
