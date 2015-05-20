@@ -1,3 +1,0 @@
-<!--- TEMPLATENAME: productnotfound.isml --->
-<h1> The product ID ${pdict.CurrentHttpParameterMap.pid.stringValue} 
-does not exist</h1

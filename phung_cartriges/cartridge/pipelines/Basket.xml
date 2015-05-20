@@ -2,7 +2,7 @@
 <?demandware-pipeline version="2.0"?>
 
 <pipeline type="view">
-  <description>This is ShowProduct Page.</description>
+  <description>This is get all product list.</description>
   <branch basename="Start">
     <segment>
       <node>
@@ -11,28 +11,29 @@
       </node>
       <simple-transition>
         <transition-display>
-          <bend-point relative-to="target" x="0" y="-1"/>
+          <bend-point relative-to="source" x="0" y="1"/>
         </transition-display>
       </simple-transition>
       <node>
-        <pipelet-node pipelet-name="GetProduct" pipelet-set-identifier="bc_api">
-          <key-binding alias="myProduct" key="Product"/>
-          <key-binding alias="CurrentHttpParameterMap.pid.stringValue" key="ProductID"/>
+        <pipelet-node pipelet-name="GetBasket" pipelet-set-identifier="bc_api">
+          <config-property key="Create" value="false"/>
+          <key-binding alias="Basket" key="Basket"/>
+          <key-binding alias="null" key="StoredBasket"/>
         </pipelet-node>
-        <node-display x="0" y="2"/>
+        <node-display x="0" y="1"/>
         <branch basename="b2" source-connector="error">
           <transition target-connector="in">
             <transition-display>
-              <bend-point relative-to="source" x="2" y="0"/>
+              <bend-point relative-to="source" x="4" y="0"/>
               <bend-point relative-to="target" x="0" y="-1"/>
             </transition-display>
           </transition>
           <segment>
             <node>
               <interaction-node transaction-required="false">
-                <template buffered="true" dynamic="false" name="product/productnotfound"/>
+                <template buffered="true" dynamic="false" name="basket/basket-notfound"/>
               </interaction-node>
-              <node-display x="1" y="2"/>
+              <node-display x="2" y="2"/>
             </node>
           </segment>
         </branch>
@@ -44,7 +45,7 @@
       </simple-transition>
       <node>
         <interaction-node transaction-required="false">
-          <template buffered="true" dynamic="false" name="product/product"/>
+          <template buffered="true" dynamic="false" name="basket/getbasket"/>
         </interaction-node>
         <node-display x="0" y="2"/>
       </node>

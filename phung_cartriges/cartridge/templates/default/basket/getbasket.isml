@@ -1,0 +1,6 @@
+<!--- TEMPLATENAME: getbasket.isml --->
+<isloop
+	items = "${pdict.Basket.allProductLineItems}"
+	var = "productLineItems">
+	${productLineItems.product.name}<br />
+</isloop>
