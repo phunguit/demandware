@@ -1,6 +1,7 @@
-<!--- TEMPLATENAME: product.isml --->
-<!-- <h1>The product name is ${pdict.myProduct.name}</h1>-->
-<isset name="product" value="${pdict.myProduct}" scope="pdict"/>
-<isinclude template="product/producttile" >
-
-<isinclude url="${URLUtils.url('Product-IncludeLastVisited')}" />
+<isdecorate template="product/pt_productdetails">	
+	<h1>The product name is ${pdict.myProduct.name}</h1>
+	
+	
+	<isinclude template="util/modules.isml" >
+	<isproducttile product="${pdict.myProduct}"/>
+</isdecorate>
